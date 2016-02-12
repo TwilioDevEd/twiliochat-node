@@ -20,7 +20,7 @@
     "node",
     "twilio chat",
     "twilio",
-    "express",
+    "express"
   ],
   "dependencies": {
     "body-parser": "~1.13.2",
