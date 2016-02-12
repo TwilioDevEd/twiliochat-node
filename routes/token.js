@@ -11,10 +11,8 @@ router.post('/', function (req, res) {
   var token = tokenService.generate(identity, deviceId)
 
   res.send({
-      success: {
-          identity: identity,
-          token: token.toJwt()
-      }
+    identity: identity,
+    token: token.toJwt()
   });
 });
 
