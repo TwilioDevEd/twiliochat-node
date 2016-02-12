@@ -3,7 +3,6 @@ node_js:
 - '5.0.0'
 install:
 - npm install
-services: mongodb
 env:
   global:
     - export TWILIO_ACCOUNT_SID=Your-Account-SID

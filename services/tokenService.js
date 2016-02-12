@@ -27,14 +27,6 @@ var TokenServiceFactory = function(){
       token.identity = identity;
 
       return token;
-
-      // // Serialize the token to a JWT string and include it in a JSON response
-      // response.send({
-      //     success: {
-      //         identity: identity,
-      //         token: token.toJwt()
-      //     }
-      // });
     }
   };
 };

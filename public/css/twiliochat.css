@@ -1,0 +1,230 @@
+html {
+  height: 100%;
+  padding:0;
+  margin:0;
+  background-color: #71271c;
+}
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding:0;
+  margin:0;
+  height: 100%;
+  width:100%;
+  background: #71271c; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #71271c 0%, #7c362e 47%, #a53829 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #71271c 0%,#7c362e 47%,#a53829 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #71271c 0%,#7c362e 47%,#a53829 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#71271c', endColorstr='#a53829',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  font-family: 'Oswald', 'Source Sans Pro', sans-serif;;
+}
+
+#chat-window {
+  background-color: rgba(255,255,255,0.7);
+  height: 100%;
+}
+#container {
+  height: 85vh;
+}
+#header {
+  margin: auto;
+}
+#input-div {
+  background-color: #DED4D3;
+  height: 5%;
+}
+#typing-row {
+  height: 3%;
+  font-weight: lighter;
+  font-size: small;
+  color: #BBA0A1;
+  vertical-align: bottom;
+}
+#typing-placeholder {
+  height: 100%;
+  padding-left: 10px;
+}
+#message-list {
+  overflow-y: scroll;
+}
+#message-list.connected {
+  height: 92%;
+}
+#message-list.disconnected {
+  height: 80%;
+}
+#connect-panel {
+  height: 15%;
+  background-color: #5B1913;
+  text-align: center;
+  color: #DEC4C3;
+}
+#connect-panel.connected, #typing-row.disconnected {
+  display: none;
+}
+#connect-panel.disconnected, #typing-row.disconnected {
+  display: block;
+}
+#username-input {
+  width: 70%;
+  padding-left: 10px;
+  height: 5vh;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: black;
+}
+#input-text {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1%;
+  height: 100%;
+  width: 100%;
+  background-color: #DED4D3;
+  color: #644F52;
+  font-weight: 300;
+  border: 0;
+  resize: none;
+}
+.with-shadow {
+  -webkit-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.53);
+  -moz-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.53);
+  box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.53);
+}
+#channel-panel {
+  border-left: 1px solid #864035;
+  box-shadow: -1px 0px 0px 0px #5D1E18;
+}
+#channel-list {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#channel-list.showing {
+  max-height: 75vh;
+}
+#channel-list.not-showing {
+  max-height: 80vh;
+}
+#new-channel-input {
+  background-color: #F8E6E4;
+  color: #B0ADAE;
+  border: 0;
+  resize: none;
+  height: 5vh;
+}
+#new-channel-input-row.not-showing {
+  display: none;
+}
+#new-channel-input-row.showing {
+  display: block;
+}
+.own-message {
+  background-color: #DDD3D2;
+}
+.message-info-row {
+  padding-top: 0.7vh;
+  padding-bottom: 0.5vh;
+}
+.message-body {
+  word-break: break-all;
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: small;
+  font-weight: 300;
+  color: #644F52;
+}
+.message-username {
+  margin-left: 15px;
+  margin-bottom: 5px;
+  font-size: normal;
+  font-weight: 400;
+  color: #5C5153;
+}
+.message-date {
+  margin-right: 15px;
+  margin-bottom: 5px;
+  font-weight: lighter;
+  font-size: normal;
+  color: #BA9F9F;
+}
+.no-margin {
+  margin: 0;
+}
+#add-channel-image {
+  padding-left: 20px;
+  padding-top: 1.5vh;
+  padding-bottom: 1.5vh;
+  height: 5vh;
+  cursor: pointer;
+}
+.channel-element {
+  width: 100%;
+  height: 6vh;
+  margin: 0;
+  padding-left: 20px;
+  line-height: 6vh;
+  overflow: hidden;
+  font-size: large;
+}
+.unselected-channel {
+  color: #D47567;
+}
+.unselected-channel:hover {
+  background-color: #F8E6E4;
+  color: #753A35;
+  cursor: pointer;
+}
+.selected-channel {
+  background-color: #F8E6E4;
+  color: #753A35;
+}
+#logo-image {
+  height: 3vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+#logo-column {
+  text-align: center;
+}
+.right-align {
+  text-align: right;
+  padding: 0;
+}
+.left-align {
+  text-align: left;
+  padding: 0;
+}
+#status-span {
+  color: #EE887C;
+}
+#leave-span {
+  cursor: pointer;
+  color: #370606;
+  margin-left: 1vh;
+}
+#delete-channel-span {
+  cursor: pointer;
+  color: #370606;
+}
+#status-row {
+  margin-bottom: 1vh;
+}
+#status-row.connected {
+  visibility: visible;
+}
+#status-row.disconnected {
+  visibility: hidden;
+}
+#connect-image {
+  height: 5vh;
+  margin-top: 1vh;
+  cursor: pointer;
+}
+.member-status {
+  padding: 5px;
+  font-weight: 300;
+  color: #C0A5A7;
+  text-align: center;
+  border-top: 1px solid #BCA1A3;
+  border-bottom: 1px solid #BCA1A3;
+}
