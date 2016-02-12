@@ -3,7 +3,7 @@ var router = express.Router();
 var TokenService = require('../services/tokenService');
 
 // POST /token/generate
-router.post('/generate', function (req, res) {
+router.post('/', function (req, res) {
   var deviceId = req.body.device;
   var identity = req.body.identity;
   var tokenService = new TokenService();

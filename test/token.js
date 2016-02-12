@@ -3,11 +3,11 @@ var expect = require('chai').expect
   , app = require('../app.js');
 
 describe('token', function () {
-  describe('POST /token/generate', function () {
+  describe('POST /token', function () {
     it('generates a token', function (done) {
       var agent = supertest(app);
       agent
-        .post('/token/generate')
+        .post('/token')
         .send({
           page: '/dashboard',
         })
