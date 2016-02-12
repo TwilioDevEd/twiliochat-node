@@ -6,6 +6,6 @@ install:
 env:
   global:
     - export TWILIO_ACCOUNT_SID=Your-Account-SID
-    - export TWILIO_AUTH_TOKEN=Your-Twilio-Authy-Token
-    - export TWILIO_APP_SID=Your-Twilio-APP-SID
-    - export TWILIO_PHONE_NUMBER=Your-Twilio-Phone-Number
+    - export TWILIO_API_KEY=Your-Twilio-API-KEY
+    - export TWILIO_API_SECRET=Your-Twilio-API-SECRET
+    - export TWILIO_IPM_SERVICE_SID=Your-Twilio-IPM-SERVICE-SID
