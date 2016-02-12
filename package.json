@@ -13,9 +13,13 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
+    "kontainer-di": "^0.9.8",
     "twilio": "^3.3.0-edge"
   },
   "devDependencies": {
-    "kontainer-di": "^0.9.8"
+    "chai": "^3.5.0",
+    "cheerio": "^0.20.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
   }
 }

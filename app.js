@@ -5,8 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var token = require('./routes/token');
+var di = require('./diContainer');
 
 var app = express();
 
@@ -22,8 +21,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/token', token);
+
+var tokenController = di.get('tokenController');
+var homeController = di.get('homeController');
+
+app.get('/', homeController.index);
+app.post('/token/generate', tokenController.generate);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

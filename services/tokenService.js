@@ -1,6 +1,7 @@
 var AccessToken = require('twilio').AccessToken;
+var IpMessagingGrant = AccessToken.IpMessagingGrant;
 
-var TokenServiceFactory = function(config, database){
+var TokenServiceFactory = function(){
   return {
     generate: function(identity, deviceId){
       var appName = 'TwilioChat';
