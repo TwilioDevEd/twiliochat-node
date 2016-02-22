@@ -42,14 +42,7 @@ Status](https://travis-ci.org/TwilioDevEd/twiliochat-node.svg?branch=master)](ht
 1. Start the development server
 
     ```bash
-    $ node .
-    ```
-    Alternatively you might also consider using [nodemon](https://github.com/remy/nodemon) for this. It works just like
-    the node command, but automatically restarts your application when you change any source code files.
-
-    ```bash
-    $ npm install -g nodemon
-    $ nodemon .
+    $ npm start
     ```
 
 1. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
