@@ -31,7 +31,7 @@
 
       We generate this token by creating a new `AccessToken` and providing it with
       an `IpMessagingGrant`. The new AccessToken object is created using your Twilio
-      credentials that were already loaded as environment variables.
+      credentials.
       
       ---
 
@@ -46,7 +46,7 @@
     :markdown
       ## Token Generation Controller
 
-      On our controller we expose the endpoint responsible to provide a valid
+      On our controller we expose the endpoint responsible for providing a valid
       token. Using the information provided as parameters:
 
       * `device`: identifies the device being used.  
@@ -64,23 +64,22 @@
 
       On our client, we fetch a new Token using a POST request to our endpoint.
 
-      And with the token we can instantiate a new `Twilio.AccessManager` that
-      it's used to initialize our `Twilio.IPMessaging.Client`.
+      With the token we can create a new `Twilio.AccessManager` that
+      is used to initialize our `Twilio.IPMessaging.Client`.
       
-      .step(data-title='Getting the Channel List',
+  .step(data-title='Getting the Channel List',
             data-file='public/js/twiliochat.js',
             data-highlight='124-131')
-        :markdown
-          ## Getting the Channel List
+    :markdown
+      ## Getting the Channel List
 
-          After initializing the client, we can now call it's method `getChannels`
-          to retrieve all visible channels. The method returns a promise as a
-          result that we use to show the list of channels retrieved on the UI.
+      After initializing the client, we can call its method `getChannels`
+      to retrieve all visible channels. The method returns a promise which we use to show the list of channels retrieved on the UI.
 
-          --- 
+      --- 
 
-          ** See Also **
-          * [Client API: Get Channels](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#getChannels)
+      ** See Also **
+      * [Client API: Get Channels](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#getChannels)
 
   .step(data-title='Join the General Channel',
         data-file='public/js/twiliochat.js',
@@ -103,8 +102,7 @@
     :markdown
       ## Listen to Channel Events
 
-      With access to the channel objects we can use them to listen to
-      a series of events. In our case, we're setting listeners to the
+      Next we listen for channel events. In our case, we're setting listeners to the
       following events:
 
       * `messageAdded`: When another member sends a message to the channel you are connected to.
@@ -141,13 +139,10 @@
     :markdown
       ## Creating a Channel
 
-      To create a new channel, the user clicks on the "+ Channel" link. That we'll show
+      When a user clicks on the "+ Channel" link we'll show
       an input text field where it's possible to type the name of the new channel.
-      The only restriction here, is that the user can't create a channel called
-      "General Channel". Other than that, creating a channel is as simple as calling
-      `createChannel` with an object that has the `friendlyName` key. You can create a channel
-      with more options though, see a list of the options
-      [here](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#createChannel).
+      Creating a channel is as simple as calling `createChannel` with an object that has the `friendlyName` key. You can create a channel
+      with more options listed [here](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#createChannel).
 
       --- 
 
@@ -175,9 +170,8 @@
       lets the user delete the channel they are currently joined to through the
       "delete current channel" link. The only thing you need to do to
       actually delete the channel from Twilio, is call the `delete` method
-      on the channel you are trying to delete. As other methods on the `Channel'
-      object, It'll return a promise where you can set function that is going
-      to handle successes.
+      on the channel you are trying to delete. Like other methods on the `Channel'
+      object, it'll return a promise where you can set the success handler.
 
       ---
 
