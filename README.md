@@ -11,7 +11,7 @@ Status](https://travis-ci.org/TwilioDevEd/twiliochat-node.svg?branch=master)](ht
    ```bash
    $ git clone git@github.com:TwilioDevEd/browser-calls-node.git
 
-   $ cd browser-calls-node
+   $ cd twiliochat-node
    ```
 
 1. Install project's dependencies:
