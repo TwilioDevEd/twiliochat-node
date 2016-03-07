@@ -47,7 +47,7 @@
       ## Token Generation Controller
 
       On our controller we expose the endpoint responsible for providing a valid
-      token. Using the information provided as parameters:
+      token using the information provided as parameters:
 
       * `device`: identifies the device being used.  
       * `identity`: identifies the user itself.
@@ -62,7 +62,7 @@
     :markdown
       ## Initializing the IP Messaging Client
 
-      On our client, we fetch a new Token using a POST request to our endpoint.
+      Our client fetches a new Token by making a POST request to our endpoint.
 
       With the token we can create a new `Twilio.AccessManager` that
       is used to initialize our `Twilio.IPMessaging.Client`.
@@ -73,8 +73,9 @@
     :markdown
       ## Getting the Channel List
 
-      After initializing the client, we can call its method `getChannels`
-      to retrieve all visible channels. The method returns a promise which we use to show the list of channels retrieved on the UI.
+      After initializing the client we can its `getChannels` methodz
+      to retrieve all visible channels. The method returns a promise which 
+      we use to show the list of channels retrieved on the UI.
 
       --- 
 
@@ -141,8 +142,10 @@
 
       When a user clicks on the "+ Channel" link we'll show
       an input text field where it's possible to type the name of the new channel.
-      Creating a channel is as simple as calling `createChannel` with an object that has the `friendlyName` key. You can create a channel
-      with more options listed [here](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#createChannel).
+      Creating a channel is as simple as calling `createChannel` with an object 
+      that has the `friendlyName` key. You can create a channel
+      with more options listed 
+      [here](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#createChannel).
 
       --- 
 
@@ -166,8 +169,8 @@
     :markdown
       ## Deleting a Channel
 
-      Deleting a channel is even more simple than creating one. The application
-      lets the user delete the channel they are currently joined to through the
+      Deleting a channel is easier than creating one. The application
+      lets the user delete the channel they are currently on through the
       "delete current channel" link. The only thing you need to do to
       actually delete the channel from Twilio, is call the `delete` method
       on the channel you are trying to delete. Like other methods on the `Channel`
@@ -176,13 +179,13 @@
       ---
 
       ** See Also **
-      * [Channel API: Create a Channel](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Channel.html#delete)
+      * [Channel API: Create a Channel](//media.4.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Channel.html#delete)
   .step(data-title='Where to Next?')
     :markdown
       ## Where to Next?
 
       That's it! We've just implemented a simple chat application for Node.js using
-      Express. If you are a Node developer working with Twilio,  you might want
+      Express. If you are a Node developer working with Twilio, you might want
       to check out these other tutorials:
 
       [**Click-To-Call**](//www.twilio.com/docs/howto/walkthrough/click-to-call/node/express)
