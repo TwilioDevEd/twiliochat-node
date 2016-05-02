@@ -10,6 +10,8 @@ Status](https://travis-ci.org/TwilioDevEd/twiliochat-node.svg?branch=master)](ht
 1. First clone this repository and `cd` into its directory:
    ```bash
    $ git clone git@github.com:TwilioDevEd/twiliochat-node.git
+   OR
+   $git clone https://github.com/TwilioDevEd/twiliochat-node.git
 
    $ cd twiliochat-node
    ```
