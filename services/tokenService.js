@@ -1,5 +1,8 @@
-var AccessToken = require('twilio').AccessToken;
-var IpMessagingGrant = AccessToken.IpMessagingGrant;
+var twilio = require('twilio');
+
+var AccessToken = twilio.jwt.AccessToken;
+var IpMessagingGrant = twilio.jwt.AccessToken.IpMessagingGrant;
+
 
 var TokenServiceFactory = function(){
   return {
@@ -18,9 +21,9 @@ var TokenServiceFactory = function(){
 
       // Create an access token which we will sign and return to the client,
       // containing the grant we just created
-      var token = new AccessToken(
+      var token = new twilio.jwt.AccessToken(
           process.env.TWILIO_ACCOUNT_SID,
-          process.env.TWILIO_API_KEY,
+          process.env.TWILIO_AUTH_TOKEN,
           process.env.TWILIO_API_SECRET
       );
       token.addGrant(ipmGrant);
@@ -30,4 +33,6 @@ var TokenServiceFactory = function(){
     }
   };
 };
+
+
 module.exports = TokenServiceFactory;
