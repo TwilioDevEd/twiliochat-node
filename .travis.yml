@@ -3,8 +3,8 @@ sudo: false
 language: node_js
 
 node_js:
-    - 'stable'
-    - '4.4'
+  - 'stable'
+  - '4.4'
 
 env:
   global:
@@ -15,4 +15,6 @@ env:
     - TWILIO_IPM_SERVICE_SID=Your-Twilio-IPM-SERVICE-SID
 
 cache:
-    apt: true
+  apt: true
+  directories:
+    - node_modules
