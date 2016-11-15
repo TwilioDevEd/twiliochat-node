@@ -6,10 +6,12 @@ node_js:
     - 'stable'
     - '4.4'
 
+after_install: cp --verbose .env.example .env
+
 env:
   global:
     - NODE_TLS_REJECT_UNAUTHORIZED=0
     - TWILIO_ACCOUNT_SID=Your-Account-SID
-    - TWILIO_API_KEY=Your-Twilio-API-KEY
+    - TWILIO_AUTH_TOKEN=Your-Twilio-API-KEY
     - TWILIO_API_SECRET=Your-Twilio-API-SECRET
     - TWILIO_IPM_SERVICE_SID=Your-Twilio-IPM-SERVICE-SID
