@@ -6,6 +6,8 @@ node_js:
     - 'stable'
     - '4.4'
 
+after_install: cp --verbose .env.example .env
+
 env:
   global:
     - NODE_TLS_REJECT_UNAUTHORIZED=0
