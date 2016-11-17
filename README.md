@@ -15,7 +15,6 @@ Node.js | Express  implementation of Twilio Chat
 1. First clone this repository and `cd` into its directory:
    ```bash
    $ git clone https://github.com/TwilioDevEd/twiliochat-node.git
-
    $ cd twiliochat-node
    ```
 
@@ -31,11 +30,11 @@ Node.js | Express  implementation of Twilio Chat
    ```
 
   You can find your `TWILIO_ACCOUNT_SID` in your
-  [Twilio Account Settings](https://www.twilio.com/console).
+  [Twilio Account Settings](//www.twilio.com/console).
   For `TWILIO_API_KEY` and `TWILIO_AUTH_TOKEN` you need to go
-  [IP Messaging](https://www.twilio.com/console/ip-messaging). There
+  [IP Messaging](//www.twilio.com/console/ip-messaging). There
   youl'll be able to create a new API key obtaining the two required values.
-  For `TWILIO_IPM_SERVICE_SID` you can go [IP Messaging dashboard](https://www.twilio.com/console/ip-messaging/dashboard),
+  For `TWILIO_IPM_SERVICE_SID` you can go [IP Messaging dashboard](//www.twilio.com/console/ip-messaging/dashboard),
   where you must create an IP Messaging Service. When the service is created you'll
   have access to the service's SID.
 
@@ -45,13 +44,11 @@ Node.js | Express  implementation of Twilio Chat
     $ npm start
     ```
 
-That's it!
-
 
 ## Expose your localhost to the internet
 
 If you want your chat application to be reachable publicly in the internet, you can use
-a service like [ngrok](https://ngrok.com/).
+a service like [ngrok](//ngrok.com/).
 
 1. Expose the application to the wider Internet
 
@@ -65,17 +62,19 @@ a service like [ngrok](https://ngrok.com/).
 1. Run backend tests
 
     ```bash
-    $ mocha test
+    $ npm test
     ```
 
 1. Run javascript tests:
    ```bash
-   $ cd public && npm install && npm test
+   $ cd public
+   $ npm install
+   $ npm test
    ```
 
 
 ## Meta
 
 * No warranty expressed or implied. Software is as is. Diggity.
-* [MIT License](http://www.opensource.org/licenses/mit-license.html)
+* [MIT License](//www.opensource.org/licenses/mit-license.html)
 * Lovingly crafted by Twilio Developer Education.
