@@ -1,3 +1,8 @@
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
+
+
 # twiliochat-node
 
 Node.js | Express  implementation of Twilio Chat
@@ -10,7 +15,6 @@ Status](https://travis-ci.org/TwilioDevEd/twiliochat-node.svg?branch=master)](ht
 1. First clone this repository and `cd` into its directory:
    ```bash
    $ git clone git@github.com:TwilioDevEd/browser-calls-node.git
-
    $ cd twiliochat-node
    ```
 
@@ -21,11 +25,11 @@ Status](https://travis-ci.org/TwilioDevEd/twiliochat-node.svg?branch=master)](ht
     ```
 1. Edit the following environments vars in the `.env` file. Be sure to replace the place holders with real information
 
-   ```
-   export TWILIO_ACCOUNT_SID=Your-Account-SID
-   export TWILIO_API_KEY=Your-Twilio-API-KEY
-   export TWILIO_API_SECRET=Your-Twilio-API-SECRET
-   export TWILIO_IPM_SERVICE_SID=Your-Twilio-IPM-SERVICE-SID
+   ```bash
+    TWILIO_ACCOUNT_SID=Your-Account-SID
+    TWILIO_API_KEY=Your-Twilio-API-KEY
+    TWILIO_API_SECRET=Your-Twilio-API-SECRET
+    TWILIO_IPM_SERVICE_SID=Your-Twilio-IPM-SERVICE-SID
 
    ```
 
@@ -63,7 +67,9 @@ That's it
 
 1. Run javascript tests:
    ```bash
-   $ cd public && npm install && npm test
+   $ cd public
+   $ npm install
+   $ npm test
    ```
 
 ## Meta
