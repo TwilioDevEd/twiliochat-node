@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": "private",
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "NODE_ENV=test npm test"
+    "start": "npm start",
+    "test": "NODE_ENV=test mocha test"
   },
   "description": "Node.js|Express implementation of Twilio Chat",
   "author": {
@@ -29,7 +29,7 @@
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.3.2",
-    "dotenv": "^2.0.0",
+    "dotenv-safe": "^3.0.0",
     "express": "~4.14.0",
     "jade": "~1.11.0",
     "kontainer-di": "^0.9.9",
