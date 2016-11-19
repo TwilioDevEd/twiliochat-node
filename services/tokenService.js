@@ -4,9 +4,9 @@ var AccessToken = twilio.jwt.AccessToken;
 var IpMessagingGrant = twilio.jwt.AccessToken.IpMessagingGrant;
 
 
-var TokenServiceFactory = function(){
+var TokenServiceFactory = function() {
   return {
-    generate: function(identity, deviceId){
+    generate: function(identity, deviceId) {
       var appName = 'TwilioChat';
 
       // Create a unique ID for the client on their current device
@@ -16,7 +16,7 @@ var TokenServiceFactory = function(){
       // on a given device
       var ipmGrant = new IpMessagingGrant({
           serviceSid: process.env.TWILIO_IPM_SERVICE_SID,
-          endpointId: endpointId
+          endpointId: endpointId,
       });
 
       // Create an access token which we will sign and return to the client,
@@ -30,7 +30,7 @@ var TokenServiceFactory = function(){
       token.identity = identity;
 
       return token;
-    }
+  },
   };
 };
 
