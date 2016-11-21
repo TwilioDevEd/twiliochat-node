@@ -2,7 +2,6 @@ var expect = require('chai').expect;
 var supertest = require('supertest');
 var app = require('../app.js');
 
-
 describe('token', function() {
   describe('POST /token', function() {
     it('generates a token', function(done) {
