@@ -37,7 +37,7 @@ var twiliochat = (function() {
   });
 
   function handleUsernameInputKeypress(event) {
-    if (event.keyCode === 13){
+    if (event.keyCode === 13) {
       connectClientWithUsername();
     }
   }
@@ -60,7 +60,7 @@ var twiliochat = (function() {
   tc.handleNewChannelInputKeypress = function(event) {
     if (event.keyCode === 13) {
       tc.messagingClient.createChannel({
-        friendlyName: $newChannelInput.val()
+        friendlyName: $newChannelInput.val(),
       }).then(hideAddChannelInput);
       $(this).val('');
       event.preventDefault();
@@ -81,7 +81,7 @@ var twiliochat = (function() {
   function fetchAccessToken(username, handler) {
     $.post('/twiliochat-servlets/token', {
       identity: username,
-      device: 'browser'
+      device: 'browser',
     }, function(data) {
       handler(data);
     }, 'json');
@@ -137,7 +137,7 @@ var twiliochat = (function() {
       // If it doesn't exist, let's create it
       tc.messagingClient.createChannel({
         uniqueName: GENERAL_CHANNEL_UNIQUE_NAME,
-        friendlyName: GENERAL_CHANNEL_NAME
+        friendlyName: GENERAL_CHANNEL_NAME,
       }).then(function(channel) {
         console.log('Created general channel');
         tc.generalChannel = channel;
@@ -169,7 +169,7 @@ var twiliochat = (function() {
   }
 
   tc.loadMessages = function() {
-    tc.currentChannel.getMessages(MESSAGES_HISTORY_LIMIT).then(function (messages) {
+    tc.currentChannel.getMessages(MESSAGES_HISTORY_LIMIT).then(function(messages) {
       messages.forEach(tc.addMessageToList);
     });
   };
@@ -192,7 +192,7 @@ var twiliochat = (function() {
     rowDiv.loadTemplate($('#message-template'), {
       username: message.author,
       date: dateFormatter.getTodayDate(message.timestamp),
-      body: message.body
+      body: message.body,
     });
     if (message.author === tc.username) {
       rowDiv.addClass('own-message');
@@ -203,7 +203,7 @@ var twiliochat = (function() {
   };
 
   function notifyMemberJoined(member) {
-    notify(member.identity + ' joined the channel')
+    notify(member.identity + ' joined the channel');
   }
 
   function notifyMemberLeft(member) {
@@ -213,7 +213,7 @@ var twiliochat = (function() {
   function notify(message) {
     var row = $('<div>').addClass('col-md-12');
     row.loadTemplate('#member-notification-template', {
-      status: message
+      status: message,
     });
     tc.$messageList.append(row);
     scrollToMessageListBottom();
@@ -265,7 +265,7 @@ var twiliochat = (function() {
     }
     var rowDiv = $('<div>').addClass('row channel-row');
     rowDiv.loadTemplate('#channel-template', {
-      channelName: channel.friendlyName
+      channelName: channel.friendlyName,
     });
 
     var channelP = rowDiv.children().children().first();
@@ -277,7 +277,7 @@ var twiliochat = (function() {
       channelP.addClass('selected-channel');
     }
     else {
-      channelP.addClass('unselected-channel')
+      channelP.addClass('unselected-channel');
     }
 
     $channelList.append(rowDiv);
