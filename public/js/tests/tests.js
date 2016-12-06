@@ -1,5 +1,22 @@
+require('jsdom-global')();
+global.jQuery = global.$ = window.$ = window.jQuery = require('jquery');
+global.moment = require('moment');
+require('../../../node_modules/twilio-chat/dist/twilio-chat');
+require('../../../node_modules/twilio-common/dist/twilio-common');
+require('../dateformatter');
+require('../vendor/jquery-throttle.min');
+require('../vendor/jquery.loadTemplate-1.4.4.min');
+
 var assert = require('chai').assert;
 var sinon = require('sinon');
+var twiliochat = require('../twiliochat')();
+var fs = require('fs');
+var path = require('path');
+var pug = require('pug');
+
+var indexFilePath = path.resolve(__dirname, '../../../views/index.jade');
+var indexHtml = pug.compile(fs.readFileSync(indexFilePath))();
+document.body.innerHTML = indexHtml;
 
 describe('TwilioChat', function() {
   it('should sort channels by name', function() {
@@ -10,7 +27,7 @@ describe('TwilioChat', function() {
 
     var result = twiliochat.sortChannelsByName(channels)
 
-    assert.to.deep.equal(result, [{friendlyName: 'BBA'}, {friendlyName: 'BBB'}]);
+    assert.deepEqual(result, [{friendlyName: 'BBA'}, {friendlyName: 'BBB'}]);
   });
 
   it('should be able to sort an empty list of channels', function() {
@@ -18,7 +35,7 @@ describe('TwilioChat', function() {
 
     var result = twiliochat.sortChannelsByName(channels)
 
-    assert.to.deep.equal(result, []);
+    assert.deepEqual(result, []);
   });
 
   it('should sort channels when they have same name', function() {
@@ -30,7 +47,7 @@ describe('TwilioChat', function() {
 
     var result = twiliochat.sortChannelsByName(channels);
 
-    assert.to.deep.equal(result, [{friendlyName: 'BBA'}, {friendlyName: 'BBA'}, {friendlyName: 'BBB'}]);
+    assert.deepEqual(result, [{friendlyName: 'BBA'}, {friendlyName: 'BBA'}, {friendlyName: 'BBB'}]);
   });
 
   it('should be able to add messages to chat', function() {
@@ -54,7 +71,6 @@ describe('TwilioChat', function() {
    twiliochat.joinGeneralChannel();
 
    mock.verify();
-   ok(true);
   });
 
   it('should not create a new general channel if it already has one', function(){
@@ -66,7 +82,6 @@ describe('TwilioChat', function() {
    twiliochat.joinGeneralChannel();
 
    mock.verify();
-   ok(true);
   });
 
   it('should create a new channel when requested by the user', function(){
@@ -78,18 +93,16 @@ describe('TwilioChat', function() {
     twiliochat.handleNewChannelInputKeypress({keyCode: 13, preventDefault: function() {}});
 
     mock.verify();
-    ok(true);
   });
 
   it('should retrieve list of channels', function() {
-    var messagingClientMock = {getChannels: function(){} };
+    var messagingClientMock = {getUserChannels: function(){} };
     var mock = sinon.mock(messagingClientMock);
     twiliochat.messagingClient = messagingClientMock;
-    mock.expects('getChannels').once().returns({then: function(){} });
+    mock.expects('getUserChannels').once().returns({then: function(){} });
 
     twiliochat.loadChannelList();
 
     mock.verify();
-    ok(true);
   });
 });
