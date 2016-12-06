@@ -68,6 +68,7 @@ var twiliochat = function() {
   };
 
   function connectClientWithUsername() {
+
     var usernameText = $usernameInput.val();
     $usernameInput.val('');
     if (usernameText == '') {
@@ -121,7 +122,7 @@ var twiliochat = function() {
       return;
     }
 
-    tc.messagingClient.getUserChannels().then(function(channels) {
+    tc.messagingClient.getPublicChannels().then(function(channels) {
       tc.channelArray = tc.sortChannelsByName(channels);
       $channelList.text('');
       tc.channelArray.forEach(addChannel);
@@ -135,11 +136,12 @@ var twiliochat = function() {
     console.log('Attempting to join "general" chat channel...');
     if (!tc.generalChannel) {
       // If it doesn't exist, let's create it
+      console.log('Attempting to create "general" chat channel...');
       tc.messagingClient.createChannel({
         uniqueName: GENERAL_CHANNEL_UNIQUE_NAME,
         friendlyName: GENERAL_CHANNEL_NAME,
       }).then(function(channel) {
-        console.log('Created general channel');
+        console.log('Created "general" channel.');
         tc.generalChannel = channel;
         tc.loadChannelList(tc.joinGeneralChannel);
       });
@@ -170,7 +172,7 @@ var twiliochat = function() {
 
   tc.loadMessages = function() {
     tc.currentChannel.getMessages(MESSAGES_HISTORY_LIMIT).then(function(messages) {
-      messages.forEach(tc.addMessageToList);
+      messages.items.forEach(tc.addMessageToList);
     });
   };
 
@@ -322,7 +324,7 @@ var twiliochat = function() {
   }
 
   tc.sortChannelsByName = function(channels) {
-    return channels.sort(function(a, b) {
+    return channels.items.sort(function(a, b) {
       if (a.friendlyName === GENERAL_CHANNEL_NAME) {
         return -1;
       }
@@ -336,4 +338,4 @@ var twiliochat = function() {
   return tc;
 };
 
-module.exports = twiliochat;
+window.twiliochat = twiliochat();
