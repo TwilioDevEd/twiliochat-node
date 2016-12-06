@@ -1,11 +1,9 @@
 language: node_js
+
 node_js:
-- '5.0.0'
-install:
-- npm install
-env:
-  global:
-    - export TWILIO_ACCOUNT_SID=Your-Account-SID
-    - export TWILIO_API_KEY=Your-Twilio-API-KEY
-    - export TWILIO_API_SECRET=Your-Twilio-API-SECRET
-    - export TWILIO_IPM_SERVICE_SID=Your-Twilio-IPM-SERVICE-SID
+  - 'stable'
+  - '5.0.0'
+
+cache:
+  directories:
+    - node_modules
