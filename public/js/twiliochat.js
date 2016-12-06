@@ -79,7 +79,7 @@ var twiliochat = (function() {
   }
 
   function fetchAccessToken(username, handler) {
-    $.post('/twiliochat-servlets/token', {
+    $.post('/token', {
       identity: username,
       device: 'browser',
     }, function(data) {
@@ -90,7 +90,7 @@ var twiliochat = (function() {
   function connectMessagingClient(tokenResponse) {
     // Initialize the IP messaging client
     tc.accessManager = new Twilio.AccessManager(tokenResponse.token);
-    tc.messagingClient = new Twilio.IPMessaging.Client(tc.accessManager);
+    tc.messagingClient = new Twilio.Chat.Client(tokenResponse.token);
     updateConnectedUI();
     tc.loadChannelList(tc.joinGeneralChannel);
     tc.messagingClient.on('channelAdded', $.throttle(tc.loadChannelList));
@@ -103,7 +103,7 @@ var twiliochat = (function() {
   }
 
   function setNewToken(tokenResponse) {
-    tc.accessManager.updateToken(tokenResponse.token);
+    tc.messagingClient.updateToken(tc.accessManager.token);
   }
 
   function updateConnectedUI() {
@@ -121,7 +121,7 @@ var twiliochat = (function() {
       return;
     }
 
-    tc.messagingClient.getChannels().then(function(channels) {
+    tc.messagingClient.getUserChannels().then(function(channels) {
       tc.channelArray = tc.sortChannelsByName(channels);
       $channelList.text('');
       tc.channelArray.forEach(addChannel);
