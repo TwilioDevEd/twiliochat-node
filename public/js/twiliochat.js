@@ -79,7 +79,7 @@ var twiliochat = (function() {
   }
 
   function fetchAccessToken(username, handler) {
-    $.post('/token', {
+    $.post('/twiliochat-servlets/token', {
       identity: username,
       device: 'browser'
     }, function(data) {
