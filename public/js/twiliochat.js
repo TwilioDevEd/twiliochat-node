@@ -186,7 +186,7 @@ var twiliochat = function() {
   tc.loadMessages = function() {
     return tc.currentChannel.getMessages(MESSAGES_HISTORY_LIMIT).then(function(messages) {
       tc.$messageList.text('');
-      messages.items.forEach(tc.addMessageToList);
+      messages.forEach(tc.addMessageToList);
     });
   };
 
@@ -340,7 +340,7 @@ var twiliochat = function() {
   }
 
   tc.sortChannelsByName = function(channels) {
-    return channels.items.sort(function(a, b) {
+    return channels.sort(function(a, b) {
       if (a.friendlyName === GENERAL_CHANNEL_NAME) {
         return -1;
       }

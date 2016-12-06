@@ -6,13 +6,16 @@ require('../../../node_modules/twilio-common/dist/twilio-common');
 require('../dateformatter');
 require('../vendor/jquery-throttle.min');
 require('../vendor/jquery.loadTemplate-1.4.4.min');
-
+require('../twiliochat');
 var assert = require('chai').assert;
 var sinon = require('sinon');
-var twiliochat = require('../twiliochat')();
 var fs = require('fs');
 var path = require('path');
 var pug = require('pug');
+
+var twiliochat = window.twiliochat;
+
+global.dateFormatter = window.dateFormatter;
 
 var indexFilePath = path.resolve(__dirname, '../../../views/index.jade');
 var indexHtml = pug.compile(fs.readFileSync(indexFilePath))();
@@ -96,10 +99,10 @@ describe('TwilioChat', function() {
   });
 
   it('should retrieve list of channels', function() {
-    var messagingClientMock = {getUserChannels: function(){} };
+    var messagingClientMock = {getPublicChannels: function(){} };
     var mock = sinon.mock(messagingClientMock);
     twiliochat.messagingClient = messagingClientMock;
-    mock.expects('getUserChannels').once().returns({then: function(){} });
+    mock.expects('getPublicChannels').once().returns({then: function(){} });
 
     twiliochat.loadChannelList();
 
