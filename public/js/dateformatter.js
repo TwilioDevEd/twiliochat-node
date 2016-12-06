@@ -1,4 +1,4 @@
-var dateFormatter = (function() {
+var dateFormatter = global.dateFormatter = (function() {
   var df = {};
 
   df.getTodayDate = function(date) {

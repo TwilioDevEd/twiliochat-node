@@ -1,4 +1,4 @@
-var twiliochat = (function() {
+var twiliochat = function() {
   var tc = {};
 
   var GENERAL_CHANNEL_UNIQUE_NAME = 'general';
@@ -334,4 +334,6 @@ var twiliochat = (function() {
   };
 
   return tc;
-})();
+};
+
+module.exports = twiliochat;
