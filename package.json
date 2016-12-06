@@ -4,7 +4,7 @@
   "private": "private",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "export NODE_ENV=test && mocha test"
+    "test": "NODE_ENV=test TWILIO_ACCOUNT_SID=your_account_sid TWILIO_API_KEY=your_twilio_api_key TWILIO_API_SECRET=your_twilio_api_secret TWILIO_IPM_SERVICE_SID=your_twilio_ipm_service_sid mocha test"
   },
   "description": "Node.js|Express implementation of Twilio Chat",
   "author": {
