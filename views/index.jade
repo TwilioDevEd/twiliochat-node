@@ -22,7 +22,7 @@ html(lang='en')
                 b Delete current channel
             .col-md-7.right-align
               span#status-span
-                | Connected as 
+                | Connected as
                 b
                   span#username-span
               span#leave-span
@@ -43,7 +43,7 @@ html(lang='en')
           #connect-panel.disconnected.row.with-shadow
             .row
               .col-md-12
-                label(for='username-input') Username: 
+                label(for='username-input') Username:
                 input#username-input(type='text', placeholder='username')
             .row
               .col-md-12
@@ -71,6 +71,7 @@ html(lang='en')
     script(src="/js/vendor/jquery.loadTemplate-1.4.4.min.js")
     script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js')
-    script(src='//media.twiliocdn.com/sdk/rtc/js/ip-messaging/v0.9/twilio-ip-messaging.min.js')
+    script(src="//media.twiliocdn.com/sdk/js/common/releases/0.1.5/twilio-common.js")
+    script(src="//media.twiliocdn.com/sdk/js/chat/releases/0.11.0/twilio-chat.js")
     script(src="/js/twiliochat.js")
     script(src="/js/dateformatter.js")

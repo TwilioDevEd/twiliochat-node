@@ -58,16 +58,9 @@ a service like [ngrok](https://ngrok.com/).
 
 ## Run the tests
 
-1. Run backend tests
-
-    ```bash
-    $ mocha test
-    ```
-
-1. Run javascript tests:
-   ```bash
-   $ cd public && npm install && npm test
-   ```
+  ```bash
+  $ npm test
+  ```
 
 ## Meta
 
