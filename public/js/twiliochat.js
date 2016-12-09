@@ -79,17 +79,17 @@ var twiliochat = (function() {
   }
 
   function fetchAccessToken(username, handler) {
-    $.post('/token', {
-      identity: username,
-      device: 'browser'
-    }, function(data) {
-      handler(data);
-    }, 'json');
+    $.post('/token', {identity: username, device: 'browser'}, null, 'json')
+      .done(function(response) {
+        handler(response.token);
+      })
+      .fail(function(error) {
+        console.log('Failed to fetch the Access Token with error: ' + error);
+      });
   }
 
-  function connectMessagingClient(tokenResponse) {
+  function connectMessagingClient(token) {
     // Initialize the IP messaging client
-    var token = tokenResponse.token;
     tc.accessManager = new Twilio.AccessManager(token);
     tc.messagingClient = new Twilio.Chat.Client(token);
     tc.messagingClient.initialize()
