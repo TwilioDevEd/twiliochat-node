@@ -182,12 +182,13 @@ var twiliochat = (function() {
 
   function setupChannel(channel) {
     return leaveCurrentChannel()
-      .then(initChannel(channel)
-        .then(function(_channel) {
-          joinChannel(_channel)
-            .then(initChannelEvents);
-        })
-      );
+      .then(function() {
+        return initChannel(channel);
+      })
+      .then(function(_channel) {
+        return joinChannel(_channel);
+      })
+      .then(initChannelEvents);
   }
 
   tc.loadMessages = function() {
