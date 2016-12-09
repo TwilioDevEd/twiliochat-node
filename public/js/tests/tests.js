@@ -1,9 +1,9 @@
 
-// This line transpiles the *.jade to HTML,via Pug,sets it as the document.body.
-document.body.innerHTML = window.__html__['views/index.jade'];
+var indexPageAsHtml = window.__html__['views/index.jade'];
+document.body.innerHTML = indexPageAsHtml;
 
 describe('TwilioChat', function() {
-  describe('channels sorting', function() {
+  context('channels sorting', function() {
     it('sort channels by name', function() {
       var channels = [
         {friendlyName: 'BBB'},
@@ -19,7 +19,7 @@ describe('TwilioChat', function() {
       );
     });
 
-    it('be able to sort an empty list of channels', function() {
+    it('sorts an empty list', function() {
       var channels = [];
 
       var result = twiliochat.sortChannelsByName(channels);
@@ -28,8 +28,8 @@ describe('TwilioChat', function() {
     });
   });
 
-  describe('messaging', function() {
-    it('be able to add messages to chat', function() {
+  context('#addMessageToList(message)', function() {
+    it('adds a message to chat', function() {
       var message = {
         body: 'just a test message',
         author: 'me',
@@ -44,7 +44,7 @@ describe('TwilioChat', function() {
     });
   });
 
-  describe('channels creation', function() {
+  context('#joinGeneralChannel()', function() {
     it('creates a general channel if not present', function() {
      var messagingClientMock = {createChannel: function() {}};
      var mock = sinon.mock(messagingClientMock);
@@ -70,7 +70,7 @@ describe('TwilioChat', function() {
     });
   });
 
-  describe('channels listing', function() {
+  context('#loadChannelList()', function() {
     it('gets a list of channels', function() {
       var messagingClientMock = {getPublicChannels: function() {}};
       var mock = sinon.mock(messagingClientMock);
