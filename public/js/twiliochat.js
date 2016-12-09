@@ -154,29 +154,40 @@ var twiliochat = (function() {
     }
   };
 
+  function initChannel(channel) {
+    console.log('Initialized channel ' + channel.friendlyName);
+    return tc.messagingClient.getChannelBySid(channel.sid);
+  }
+
+  function joinChannel(_channel) {
+    return _channel.join()
+      .then(function(joinedChannel) {
+        console.log('Joined channel ' + joinedChannel.friendlyName);
+        updateChannelUI(_channel);
+        tc.currentChannel = _channel;
+        tc.loadMessages();
+        return joinedChannel;
+      });
+  }
+
+  function initChannelEvents() {
+    console.log(tc.currentChannel.friendlyName + ' ready.');
+    tc.currentChannel.on('messageAdded', tc.addMessageToList);
+    tc.currentChannel.on('typingStarted', showTypingStarted);
+    tc.currentChannel.on('typingEnded', hideTypingStarted);
+    tc.currentChannel.on('memberJoined', notifyMemberJoined);
+    tc.currentChannel.on('memberLeft', notifyMemberLeft);
+    $inputText.prop('disabled', false).focus();
+  }
+
   function setupChannel(channel) {
     return leaveCurrentChannel()
-      .then(function() {
-        return tc.messagingClient.getChannelBySid(channel.sid)
+      .then(initChannel(channel)
         .then(function(_channel) {
-          // Join the channel
-          return _channel.join()
-            .then(function(joinedChannel) {
-              console.log('Joined channel ' + joinedChannel.friendlyName);
-              updateChannelUI(_channel);
-              tc.currentChannel = _channel;
-              return tc.loadMessages();
-            })
-            .then(function() {
-              _channel.on('messageAdded', tc.addMessageToList);
-              _channel.on('typingStarted', showTypingStarted);
-              _channel.on('typingEnded', hideTypingStarted);
-              _channel.on('memberJoined', notifyMemberJoined);
-              _channel.on('memberLeft', notifyMemberLeft);
-              $inputText.prop('disabled', false).focus();
-            });
-        });
-      });
+          joinChannel(_channel)
+            .then(initChannelEvents);
+        })
+      );
   }
 
   tc.loadMessages = function() {
