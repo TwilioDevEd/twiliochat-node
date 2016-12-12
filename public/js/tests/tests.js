@@ -38,9 +38,7 @@ describe('TwilioChat', function() {
       var messageList = twiliochat.$messageList;
       twiliochat.addMessageToList(message);
 
-      assert.isOk(messageList.html().indexOf('just a test message') > -1,
-                  messageList.html()
-      );
+      assert.isOk(messageList.html().includes('just a test message'));
     });
   });
 
