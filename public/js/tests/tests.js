@@ -3,8 +3,8 @@ var indexPageAsHtml = window.__html__['views/index.jade'];
 document.body.innerHTML = indexPageAsHtml;
 
 describe('TwilioChat', function() {
-  context('channels sorting', function() {
-    it('sort channels by name', function() {
+  context('#sortChannelsByName()', function() {
+    it('sorts channels by name', function() {
       var channels = [
         {friendlyName: 'BBB'},
         {friendlyName: 'BBA'},
@@ -28,7 +28,7 @@ describe('TwilioChat', function() {
     });
   });
 
-  context('#addMessageToList(message)', function() {
+  context('#addMessageToList()', function() {
     it('adds a message to chat', function() {
       var message = {
         body: 'just a test message',
