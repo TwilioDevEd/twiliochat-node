@@ -4,42 +4,42 @@
     :markdown
       ## Introduction
 
-      Ready to implement a chat application using Twilio IP Messaging Client and 
+      Ready to implement a chat application using Twilio Programmable Chat Client and
       Node.js | [Express](//expressjs.com/en/index.html)?
 
       This application allow users to exchange messages through different channels,
-      using the Twilio IP Messaging API. On this example, we'll show how to use 
+      using the Twilio Programmable Chat API. On this example, we'll show how to use
       this API capabilities to manage channels and their usages.
 
       ---
 
       **See Also:**
       * [Getting Started with Express](//expressjs.com/en/starter/installing.html)
-      * [IP Messaging API](//www.twilio.com/docs/api/ip-messaging)
-      * [Channels and Messages](//www.twilio.com/docs/api/ip-messaging/guides/channels)
-      * [User Identity & Access Tokens](//www.twilio.com/docs/api/ip-messaging/guides/identity)
-      * [Twilio IP Messaging Client Reference](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/)
-      
+      * [Programmable Chat API](//www.twilio.com/docs/api/chat)
+      * [Channels and Messages](//www.twilio.com/docs/api/chat/guides/channels)
+      * [User Identity & Access Tokens](//www.twilio.com/docs/api/chat/guides/create-tokens)
+      * [Twilio Programmable Chat Client Reference](//media.twiliocdn.com/sdk/js/chat/releases/0.11.1/docs/)
+
   .step(data-title='Token Generation',
         data-file='services/tokenService.js')
     :markdown
       ## Token Generation
 
-      In order to create a Twilio IP messaging client, you will need an access
-      token. This token holds information about your Twilio Account and IP
-      Messaging API keys.
+      In order to create a Twilio Programmable Chat client, you will need an access
+      token. This token holds information about your Twilio Account and
+      Programmable Chat API keys.
 
       We generate this token by creating a new `AccessToken` and providing it with
       an `IpMessagingGrant`. The new AccessToken object is created using your Twilio
       credentials.
-      
+
       ---
 
       ** See also **
       * [The Twilio Node Helper Library](//www.twilio.com/docs/node/install)
       * [Twilio API Access Tokens](//www.twilio.com/docs/api/rest/access-tokens)
-      
-  
+
+
   .step(data-title='Token Generation Controller',
         data-file='routes/token.js',
         data-highlight='5-17')
@@ -49,49 +49,49 @@
       On our controller we expose the endpoint responsible for providing a valid
       token using the information provided as parameters:
 
-      * `device`: identifies the device being used.  
+      * `device`: identifies the device being used.
       * `identity`: identifies the user itself.
 
       Once we have used the `tokenService` object to generate a token we can use
       the AccessToken's method as `token.toJwt()` to get the token as a String.
       Then we just return the token as a JSON encoded string.
-  
+
   .step(data-title='Initializing the Client',
         data-file='public/js/twiliochat.js',
-        data-highlight='81-88,91-93')
+        data-highlight='79-89,92-94')
     :markdown
-      ## Initializing the IP Messaging Client
+      ## Initializing the Programmable Chat Client
 
       Our client fetches a new Token by making a POST request to our endpoint.
 
       With the token we can create a new `Twilio.AccessManager` that
-      is used to initialize our `Twilio.IPMessaging.Client`.
-      
+      is used to initialize our `Twilio.Chat.Client`.
+
   .step(data-title='Getting the Channel List',
             data-file='public/js/twiliochat.js',
-            data-highlight='124-131')
+            data-highlight='126-134')
     :markdown
       ## Getting the Channel List
 
       After initializing the client we can its `getChannels` methodz
-      to retrieve all visible channels. The method returns a promise which 
+      to retrieve all visible channels. The method returns a promise which
       we use to show the list of channels retrieved on the UI.
 
-      --- 
+      ---
 
       ** See Also **
-      * [Client API: Get Channels](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#getChannels)
+      * [Client API: Get Channels](//www.twilio.com/docs/api/chat/guides/channels)
 
   .step(data-title='Join the General Channel',
         data-file='public/js/twiliochat.js',
-        data-highlight='134-151')
+        data-highlight='136-154')
     :markdown
       ## Join the General Channel
 
       This application will try to join a channel called "General Channel" when it starts.
       If the channel doesn't exist, we'll create one with that name. The scope of
       this example application will show you how to work only with public channels,
-      but the IP Messaging client allows you to create private channels and handle
+      but the Programmable Chat client allows you to create private channels and handle
       invitations.
 
       Notice we set a unique name for the general channel as we don't want to
@@ -99,7 +99,7 @@
 
   .step(data-title='Listen to Channel Events',
         data-file='public/js/twiliochat.js',
-        data-highlight='161-165')
+        data-highlight='173-177')
     :markdown
       ## Listen to Channel Events
 
@@ -117,11 +117,11 @@
       ---
 
       *** For a complete list of channel events ***
-      * [Channel API](https://media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Channel.html)
+      * [Channel API](//www.twilio.com/docs/api/chat/guides/channels)
 
   .step(data-title='Listen to Client Events',
         data-file='public/js/twiliochat.js',
-        data-highlight='96-98')
+        data-highlight='98-100')
     :markdown
       ## Listen to Client Events
 
@@ -132,30 +132,30 @@
       * `tokenExpired`: When the supplied token expires.
 
       *** For a complete list of client events ***
-      * [IP Messaging Client API](https://media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html)
+      * [Programmable Chat Client API](//www.twilio.com/docs/api/chat)
 
   .step(data-title='Creating a Channel',
         data-file='public/js/twiliochat.js',
-        data-highlight='60-68')
+        data-highlight='58-68')
     :markdown
       ## Creating a Channel
 
       When a user clicks on the "+ Channel" link we'll show
       an input text field where it's possible to type the name of the new channel.
-      Creating a channel is as simple as calling `createChannel` with an object 
+      Creating a channel is as simple as calling `createChannel` with an object
       that has the `friendlyName` key. You can create a channel
-      with more options listed 
-      [here](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#createChannel).
+      with more options listed on the
+      [Channels section](//www.twilio.com/docs/api/chat/guides/channels) of the Programmable Chat documentation.
 
-      --- 
+      ---
 
       ** See Also **
-      * [IP Messaging Client API: Create a Channel](//media.twiliocdn.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Client.html#createChannel)
+      * [Programmable Chat Client API: Create a Channel](//www.twilio.com/docs/api/chat/guides/channels)
 
 
   .step(data-title='Joining Other Channels',
         data-file='public/js/twiliochat.js',
-        data-highlight='300-310')
+        data-highlight='321-332')
     :markdown
       ## Joining Other Channels
 
@@ -165,7 +165,7 @@
 
   .step(data-title='Deleting a Channel',
         data-file='public/js/twiliochat.js',
-        data-highlight='286-298')
+        data-highlight='307-320')
     :markdown
       ## Deleting a Channel
 
@@ -179,7 +179,7 @@
       ---
 
       ** See Also **
-      * [Channel API: Create a Channel](//media.4.com/sdk/rtc/js/ip-messaging/releases/0.9.2/docs/api/Channel.html#delete)
+      * [Channel API: Create a Channel](//media.twiliocdn.com/sdk/js/chat/releases/0.11.1/docs/Channel.html)
   .step(data-title='Where to Next?')
     :markdown
       ## Where to Next?
@@ -201,4 +201,4 @@
 
       Thanks for checking out this tutorial! If you have any feedback to share
       with us, we'd love to hear it. Tweet
-      [@twilio](http://twitter.com/twilio) to let us know what you think.
+      [@twilio](//twitter.com/twilio) to let us know what you think.
