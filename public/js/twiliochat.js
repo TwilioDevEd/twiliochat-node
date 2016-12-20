@@ -37,7 +37,7 @@ var twiliochat = (function() {
   });
 
   function handleUsernameInputKeypress(event) {
-    if (event.keyCode === 13){
+    if (event.keyCode === 13) {
       connectClientWithUsername();
     }
   }
@@ -47,8 +47,7 @@ var twiliochat = (function() {
       tc.currentChannel.sendMessage($(this).val());
       event.preventDefault();
       $(this).val('');
-    }
-    else {
+    } else {
       notifyTyping();
     }
   }
@@ -60,7 +59,7 @@ var twiliochat = (function() {
   tc.handleNewChannelInputKeypress = function(event) {
     if (event.keyCode === 13) {
       tc.messagingClient.createChannel({
-        friendlyName: $newChannelInput.val()
+        friendlyName: $newChannelInput.val(),
       }).then(hideAddChannelInput);
       $(this).val('');
       event.preventDefault();
@@ -79,23 +78,27 @@ var twiliochat = (function() {
   }
 
   function fetchAccessToken(username, handler) {
-    $.post('/token', {
-      identity: username,
-      device: 'browser'
-    }, function(data) {
-      handler(data);
-    }, 'json');
+    $.post('/token', {identity: username, device: 'browser'}, null, 'json')
+      .done(function(response) {
+        handler(response.token);
+      })
+      .fail(function(error) {
+        console.log('Failed to fetch the Access Token with error: ' + error);
+      });
   }
 
-  function connectMessagingClient(tokenResponse) {
+  function connectMessagingClient(token) {
     // Initialize the IP messaging client
-    tc.accessManager = new Twilio.AccessManager(tokenResponse.token);
-    tc.messagingClient = new Twilio.IPMessaging.Client(tc.accessManager);
-    updateConnectedUI();
-    tc.loadChannelList(tc.joinGeneralChannel);
-    tc.messagingClient.on('channelAdded', $.throttle(tc.loadChannelList));
-    tc.messagingClient.on('channelRemoved', $.throttle(tc.loadChannelList));
-    tc.messagingClient.on('tokenExpired', refreshToken);
+    tc.accessManager = new Twilio.AccessManager(token);
+    tc.messagingClient = new Twilio.Chat.Client(token);
+    tc.messagingClient.initialize()
+      .then(function() {
+        updateConnectedUI();
+        tc.loadChannelList(tc.joinGeneralChannel);
+        tc.messagingClient.on('channelAdded', $.throttle(tc.loadChannelList));
+        tc.messagingClient.on('channelRemoved', $.throttle(tc.loadChannelList));
+        tc.messagingClient.on('tokenExpired', refreshToken);
+      });
   }
 
   function refreshToken() {
@@ -121,8 +124,8 @@ var twiliochat = (function() {
       return;
     }
 
-    tc.messagingClient.getChannels().then(function(channels) {
-      tc.channelArray = tc.sortChannelsByName(channels);
+    tc.messagingClient.getPublicChannels().then(function(channels) {
+      tc.channelArray = tc.sortChannelsByName(channels.items);
       $channelList.text('');
       tc.channelArray.forEach(addChannel);
       if (typeof handler === 'function') {
@@ -137,46 +140,64 @@ var twiliochat = (function() {
       // If it doesn't exist, let's create it
       tc.messagingClient.createChannel({
         uniqueName: GENERAL_CHANNEL_UNIQUE_NAME,
-        friendlyName: GENERAL_CHANNEL_NAME
+        friendlyName: GENERAL_CHANNEL_NAME,
       }).then(function(channel) {
         console.log('Created general channel');
         tc.generalChannel = channel;
         tc.loadChannelList(tc.joinGeneralChannel);
       });
-    }
-    else {
+    } else {
       console.log('Found general channel:');
       setupChannel(tc.generalChannel);
     }
   };
 
+  function initChannel(channel) {
+    console.log('Initialized channel ' + channel.friendlyName);
+    return tc.messagingClient.getChannelBySid(channel.sid);
+  }
+
+  function joinChannel(_channel) {
+    return _channel.join()
+      .then(function(joinedChannel) {
+        console.log('Joined channel ' + joinedChannel.friendlyName);
+        updateChannelUI(_channel);
+        tc.currentChannel = _channel;
+        tc.loadMessages();
+        return joinedChannel;
+      });
+  }
+
+  function initChannelEvents() {
+    console.log(tc.currentChannel.friendlyName + ' ready.');
+    tc.currentChannel.on('messageAdded', tc.addMessageToList);
+    tc.currentChannel.on('typingStarted', showTypingStarted);
+    tc.currentChannel.on('typingEnded', hideTypingStarted);
+    tc.currentChannel.on('memberJoined', notifyMemberJoined);
+    tc.currentChannel.on('memberLeft', notifyMemberLeft);
+    $inputText.prop('disabled', false).focus();
+  }
+
   function setupChannel(channel) {
-    // Join the channel
-    channel.join().then(function(joinedChannel) {
-      console.log('Joined channel ' + joinedChannel.friendlyName);
-      leaveCurrentChannel();
-      updateChannelUI(channel);
-      tc.currentChannel = channel;
-      tc.loadMessages();
-      channel.on('messageAdded', tc.addMessageToList);
-      channel.on('typingStarted', showTypingStarted);
-      channel.on('typingEnded', hideTypingStarted);
-      channel.on('memberJoined', notifyMemberJoined);
-      channel.on('memberLeft', notifyMemberLeft);
-      $inputText.prop('disabled', false).focus();
-      tc.$messageList.text('');
-    });
+    return leaveCurrentChannel()
+      .then(function() {
+        return initChannel(channel);
+      })
+      .then(function(_channel) {
+        return joinChannel(_channel);
+      })
+      .then(initChannelEvents);
   }
 
   tc.loadMessages = function() {
     tc.currentChannel.getMessages(MESSAGES_HISTORY_LIMIT).then(function (messages) {
-      messages.forEach(tc.addMessageToList);
+      messages.items.forEach(tc.addMessageToList);
     });
   };
 
   function leaveCurrentChannel() {
     if (tc.currentChannel) {
-      tc.currentChannel.leave().then(function(leftChannel) {
+      return tc.currentChannel.leave().then(function(leftChannel) {
         console.log('left ' + leftChannel.friendlyName);
         leftChannel.removeListener('messageAdded', tc.addMessageToList);
         leftChannel.removeListener('typingStarted', showTypingStarted);
@@ -184,6 +205,8 @@ var twiliochat = (function() {
         leftChannel.removeListener('memberJoined', notifyMemberJoined);
         leftChannel.removeListener('memberLeft', notifyMemberLeft);
       });
+    } else {
+      return Promise.resolve();
     }
   }
 
@@ -192,7 +215,7 @@ var twiliochat = (function() {
     rowDiv.loadTemplate($('#message-template'), {
       username: message.author,
       date: dateFormatter.getTodayDate(message.timestamp),
-      body: message.body
+      body: message.body,
     });
     if (message.author === tc.username) {
       rowDiv.addClass('own-message');
@@ -213,7 +236,7 @@ var twiliochat = (function() {
   function notify(message) {
     var row = $('<div>').addClass('col-md-12');
     row.loadTemplate('#member-notification-template', {
-      status: message
+      status: message,
     });
     tc.$messageList.append(row);
     scrollToMessageListBottom();
@@ -275,8 +298,7 @@ var twiliochat = (function() {
     if (tc.currentChannel && channel.sid === tc.currentChannel.sid) {
       tc.currentChannelContainer = channelP;
       channelP.addClass('selected-channel');
-    }
-    else {
+    } else {
       channelP.addClass('unselected-channel')
     }
 
