@@ -59,9 +59,12 @@ var twiliochat = (function() {
 
   tc.handleNewChannelInputKeypress = function(event) {
     if (event.keyCode === 13) {
-      tc.messagingClient.createChannel({
-        friendlyName: $newChannelInput.val()
-      }).then(hideAddChannelInput);
+      tc.messagingClient
+        .createChannel({
+          friendlyName: $newChannelInput.val(),
+        })
+        .then(hideAddChannelInput);
+
       $(this).val('');
       event.preventDefault();
     }
@@ -311,14 +314,18 @@ var twiliochat = (function() {
     if (!tc.currentChannel) {
       return;
     }
+
     if (tc.currentChannel.sid === tc.generalChannel.sid) {
       alert('You cannot delete the general channel');
       return;
     }
-    tc.currentChannel.delete().then(function(channel) {
-      console.log('channel: '+ channel.friendlyName + ' deleted');
-      setupChannel(tc.generalChannel);
-    });
+
+    tc.currentChannel
+      .delete()
+      .then(function(channel) {
+        console.log('channel: '+ channel.friendlyName + ' deleted');
+        setupChannel(tc.generalChannel);
+      });
   }
 
   function selectChannel(event) {
