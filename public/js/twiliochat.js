@@ -90,7 +90,6 @@ var twiliochat = (function() {
 
   function connectMessagingClient(token) {
     // Initialize the IP messaging client
-    tc.accessManager = new Twilio.AccessManager(token);
     tc.messagingClient = new Twilio.Chat.Client(token);
     tc.messagingClient.initialize()
       .then(function() {
@@ -106,8 +105,8 @@ var twiliochat = (function() {
     fetchAccessToken(tc.username, setNewToken);
   }
 
-  function setNewToken(tokenResponse) {
-    tc.accessManager.updateToken(tokenResponse.token);
+  function setNewToken(token) {
+    tc.messagingClient.updateToken(tokenResponse.token);
   }
 
   function updateConnectedUI() {
