@@ -58,22 +58,23 @@
 
   .step(data-title='Initializing the Client',
         data-file='public/js/twiliochat.js',
-        data-highlight='79-89,92-94')
+        data-highlight='83-104')
     :markdown
       ## Initializing the Programmable Chat Client
 
-      Our client fetches a new Token by making a POST request to our endpoint.
+      Our client fetches a new Token by making a POST request to our endpoint 
+      when it calls the `fetchAccessToken` method.
 
-      With the token we can create a new `Twilio.AccessManager` that
-      is used to initialize our `Twilio.Chat.Client`.
+      With the token we can then initialize `Twilio.Chat.Client` in 
+      `connectMessagingClient`.
 
   .step(data-title='Getting the Channel List',
             data-file='public/js/twiliochat.js',
-            data-highlight='126-134')
+            data-highlight='123-137')
     :markdown
       ## Getting the Channel List
 
-      After initializing the client we can its `getChannels` methodz
+      After initializing the client we can use its `getPublicChannels` method
       to retrieve all visible channels. The method returns a promise which
       we use to show the list of channels retrieved on the UI.
 
@@ -84,7 +85,7 @@
 
   .step(data-title='Join the General Channel',
         data-file='public/js/twiliochat.js',
-        data-highlight='136-154')
+        data-highlight='139-155')
     :markdown
       ## Join the General Channel
 
@@ -99,7 +100,7 @@
 
   .step(data-title='Listen to Channel Events',
         data-file='public/js/twiliochat.js',
-        data-highlight='173-177')
+        data-highlight='173-181')
     :markdown
       ## Listen to Channel Events
 
@@ -121,7 +122,7 @@
 
   .step(data-title='Listen to Client Events',
         data-file='public/js/twiliochat.js',
-        data-highlight='98-100')
+        data-highlight='93-104')
     :markdown
       ## Listen to Client Events
 
@@ -136,7 +137,7 @@
 
   .step(data-title='Creating a Channel',
         data-file='public/js/twiliochat.js',
-        data-highlight='58-68')
+        data-highlight='59-70')
     :markdown
       ## Creating a Channel
 
@@ -155,7 +156,7 @@
 
   .step(data-title='Joining Other Channels',
         data-file='public/js/twiliochat.js',
-        data-highlight='321-332')
+        data-highlight='139-155')
     :markdown
       ## Joining Other Channels
 
@@ -165,7 +166,7 @@
 
   .step(data-title='Deleting a Channel',
         data-file='public/js/twiliochat.js',
-        data-highlight='307-320')
+        data-highlight='310-326')
     :markdown
       ## Deleting a Channel
 
@@ -199,6 +200,6 @@
 
       ## Did this help?
 
-      Thanks for checking out this tutorial! If you have any feedback to share
-      with us, we'd love to hear it. Tweet
-      [@twilio](//twitter.com/twilio) to let us know what you think.
+      Thanks for checking this tutorial out! If you have any feedback
+      to share with us, we'd love to hear it.
+      [Contact the Twilio Developer Education Team](mailto:deved-oss@twilio.com) to let us know what you think.

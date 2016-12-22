@@ -1,6 +1,6 @@
 {
     "title": "Twilio Chat",
     "repo": "TwilioDevEd/twiliochat-node",
-    "description": "Learn to implement a simple chat application using Twilio IP Messaging Client",
+    "description": " Learn to implement a simple chat application using Twilio Chat Client",
     "heroku": false
 }
