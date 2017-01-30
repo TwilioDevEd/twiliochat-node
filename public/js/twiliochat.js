@@ -298,15 +298,13 @@ var twiliochat = (function() {
   }
 
   function selectChannel(event) {
-    var target = $(event.target);
-    var channelSid = target.data().sid;
-    var selectedChannel = tc.channelArray.filter(function(channel) {
+    var channelSid = $(event.target).data('sid');
+    var selectedChannel = tc.channelArray.find(function(channel) {
       return channel.sid === channelSid;
-    })[0];
-    if (selectedChannel === tc.currentChannel) {
-      return;
+    });
+    if (selectedChannel !== tc.currentChannel) {
+      setupChannel(selectedChannel);
     }
-    setupChannel(selectedChannel);
   };
 
   function disconnectClient() {
