@@ -6,11 +6,10 @@ var TokenService = require('../services/tokenService');
 router.post('/', function(req, res) {
   var deviceId = req.body.device;
   var identity = req.body.identity;
-  var tokenService = new TokenService();
 
-  var token = tokenService.generate(identity, deviceId)
+  var token = TokenService.generate(identity, deviceId)
 
-  res.send({
+  res.json({
     identity: identity,
     token: token.toJwt(),
   });

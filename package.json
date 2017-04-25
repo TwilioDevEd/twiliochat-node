@@ -4,7 +4,7 @@
   "private": "private",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test TWILIO_ACCOUNT_SID=your_account_sid TWILIO_API_KEY=your_twilio_api_key TWILIO_API_SECRET=your_twilio_api_secret TWILIO_IPM_SERVICE_SID=your_twilio_ipm_service_sid node_modules/.bin/mocha test; node_modules/.bin/karma start"
+    "test": "NODE_ENV=test TWILIO_ACCOUNT_SID=your_account_sid TWILIO_AUTH_TOKEN=your_twilio_auth_token TWILIO_API_KEY=your_twilio_api_key TWILIO_API_SECRET=your_twilio_api_secret TWILIO_IPM_SERVICE_SID=your_twilio_ipm_service_sid node_modules/.bin/mocha test; node_modules/.bin/karma start"
   },
   "description": "Node.js|Express implementation of Twilio Chat",
   "author": {
@@ -23,7 +23,7 @@
     "express"
   ],
   "engines": {
-    "node": ">=4.1.0 <5.5.0"
+    "node": ">=6.0.0 <8.0.0"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
@@ -34,9 +34,10 @@
     "jade": "~1.11.0",
     "jquery": "^2.2.0",
     "kontainer-di": "^0.9.9",
+    "moment": "^2.11.1",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.2",
-    "twilio": "3.0.0-rc.13"
+    "twilio": "~3.0.0-rc.16"
   },
   "devDependencies": {
     "babel-polyfill": "^6.16.0",
@@ -51,7 +52,6 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sinon": "^1.0.5",
     "mocha": "^3.1.2",
-    "moment": "^2.11.1",
     "sinon": "^1.17.6",
     "supertest": "^2.0.1"
   }

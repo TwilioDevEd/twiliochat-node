@@ -14,19 +14,19 @@ Node.js | Express  implementation of Twilio Chat
 
 1. First clone this repository and `cd` into its directory:
    ```bash
-   $ git clone https://github.com/TwilioDevEd/twiliochat-node.git
-   $ cd twiliochat-node
+   git clone https://github.com/TwilioDevEd/twiliochat-node.git \
+   cd twiliochat-node
    ```
 
 1. Install project's dependencies:
 
     ```bash
-    $ npm install
+    npm install
     ```
 1. Copy the sample configuration file and edit it to match your configuration.
 
    ```bash
-   $ cp .env.example .env
+   cp .env.example .env
    ```
 
   You can find your `TWILIO_ACCOUNT_SID` in your
@@ -41,7 +41,7 @@ Node.js | Express  implementation of Twilio Chat
 1. Start the development server
 
     ```bash
-    $ npm start
+    npm start
     ```
 
 
@@ -53,7 +53,7 @@ a service like [ngrok](//ngrok.com/).
 1. Expose the application to the wider Internet
 
    ```bash
-   $ ngrok http 3000
+   ngrok http 3000
    ```
 
 
@@ -62,16 +62,16 @@ a service like [ngrok](//ngrok.com/).
 1. Run backend tests
 
     ```bash
-    $ npm test
+    npm test
     ```
 
 1. Run javascript tests:
-   ```bash
-   $ cd public
-   $ npm install
-   $ npm test
-   ```
 
+   ```bash
+   cd public \
+   npm install \
+   npm test
+   ```
 
 ## Meta
 
