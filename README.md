@@ -31,11 +31,11 @@ Node.js | Express  implementation of Twilio Chat
 
   You can find your `TWILIO_ACCOUNT_SID` in your
   [Twilio Account Settings](//www.twilio.com/console).
-  For `TWILIO_API_KEY` and `TWILIO_AUTH_TOKEN` you need to go
-  [IP Messaging](//www.twilio.com/console/ip-messaging). There
-  youl'll be able to create a new API key obtaining the two required values.
-  For `TWILIO_IPM_SERVICE_SID` you can go [IP Messaging dashboard](//www.twilio.com/console/ip-messaging/dashboard),
-  where you must create an IP Messaging Service. When the service is created you'll
+  For `TWILIO_API_KEY` and `TWILIO_AUTH_TOKEN` you need to go to 
+  [API Keys](//www.twilio.com/console/dev-tools/api-keys) in the console. There
+  youl'll be able to create a new API key obtaining the two required values (your TWILIO_AUTH_TOKEN is the same as the `SECRET` for your generated API key).
+  For `TWILIO_IPM_SERVICE_SID` you can go to the [Programmable Chat dashboard](//www.twilio.com/console/chat/dashboard),
+  where you must create a Chat Messaging Service. When the service is created you'll
   have access to the service's SID.
 
 1. Start the development server
