@@ -20,7 +20,7 @@ function TokenGenerator(identity, deviceId) {
   // containing the grant we just created
   const token = new AccessToken(
     process.env.TWILIO_ACCOUNT_SID,
-    process.env.TWILIO_AUTH_TOKEN,
+    process.env.TWILIO_API_KEY,
     process.env.TWILIO_API_SECRET
   );
 
