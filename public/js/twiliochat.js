@@ -16,6 +16,10 @@ var twiliochat = (function() {
   var $typingPlaceholder;
 
   $(document).ready(function() {
+    tc.init();
+  });
+
+  tc.init = function() {
     tc.$messageList = $('#message-list');
     $channelList = $('#channel-list');
     $inputText = $('#input-text');
@@ -34,7 +38,7 @@ var twiliochat = (function() {
     $('#add-channel-image').on('click', showAddChannelInput);
     $('#leave-span').on('click', disconnectClient);
     $('#delete-channel-span').on('click', deleteCurrentChannel);
-  });
+  };
 
   function handleUsernameInputKeypress(event) {
     if (event.keyCode === 13){
