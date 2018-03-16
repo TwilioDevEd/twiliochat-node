@@ -35,6 +35,7 @@ describe('TwilioChat', function() {
         author: 'me',
         timestamp: new Date(),
       };
+      twiliochat.init();
       var messageList = twiliochat.$messageList;
       twiliochat.addMessageToList(message);
 
@@ -60,11 +61,13 @@ describe('TwilioChat', function() {
       twiliochat.messagingClient = messagingClientMock;
       mock.expects('createChannel').once().returns({then: function() {}});
 
-      twiliochat.handleNewChannelInputKeypress(
-          {keyCode: 13, preventDefault: function() {}}
-      );
+      $('#add-channel-image').click(function() {
+        twiliochat.handleNewChannelInputKeypress(
+            {keyCode: 13, preventDefault: function() {}}
+        );
 
-      mock.verify();
+        mock.verify();
+      });
     });
   });
 
