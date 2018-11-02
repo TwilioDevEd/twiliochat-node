@@ -36,7 +36,7 @@ Node.js | Express  implementation of Twilio Chat
   [API Keys](//www.twilio.com/console/dev-tools/api-keys) in the console. There
   youl'll be able to create a new API key obtaining the two required values.
   
-  For `TWILIO_IPM_SERVICE_SID` you can go to the [Programmable Chat dashboard](//www.twilio.com/console/chat/dashboard),
+  For `TWILIO_CHAT_SERVICE_SID` you can go to the [Programmable Chat dashboard](//www.twilio.com/console/chat/dashboard),
   where you must create a Chat Messaging Service. When the service is created you'll
   have access to the service's SID.
 

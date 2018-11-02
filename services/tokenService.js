@@ -1,7 +1,7 @@
 const twilio = require('twilio');
 
 const AccessToken = twilio.jwt.AccessToken;
-const IpMessagingGrant = AccessToken.ChatGrant;
+const ChatGrant = AccessToken.ChatGrant;
 
 function TokenGenerator(identity, deviceId) {
   const appName = 'TwilioChat';
@@ -9,10 +9,10 @@ function TokenGenerator(identity, deviceId) {
   // Create a unique ID for the client on their current device
   const endpointId = appName + ':' + identity + ':' + deviceId;
 
-  // Create a "grant" which enables a client to use IPM as a given user,
+  // Create a "grant" which enables a client to use Chat as a given user,
   // on a given device
-  const ipmGrant = new IpMessagingGrant({
-    serviceSid: process.env.TWILIO_IPM_SERVICE_SID,
+  const chatGrant = new ChatGrant({
+    serviceSid: process.env.TWILIO_CHAT_SERVICE_SID,
     endpointId: endpointId,
   });
 
@@ -24,7 +24,7 @@ function TokenGenerator(identity, deviceId) {
     process.env.TWILIO_API_SECRET
   );
 
-  token.addGrant(ipmGrant);
+  token.addGrant(chatGrant);
   token.identity = identity;
 
   return token;
