@@ -73,10 +73,10 @@ describe('TwilioChat', function() {
 
   context('#loadChannelList()', function() {
     it('gets a list of channels', function() {
-      var messagingClientMock = {getPublicChannels: function() {}};
+      var messagingClientMock = {getPublicChannelDescriptors: function() {}};
       var mock = sinon.mock(messagingClientMock);
       twiliochat.messagingClient = messagingClientMock;
-      mock.expects('getPublicChannels').once().returns({then: function() {}});
+      mock.expects('getPublicChannelDescriptors').once().returns({then: function() {}});
 
       twiliochat.loadChannelList();
 
