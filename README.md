@@ -14,7 +14,7 @@ Node.js | Express  implementation of Twilio Chat
 
 1. First clone this repository and `cd` into its directory:
    ```bash
-   git clone https://github.com/TwilioDevEd/twiliochat-node.git \
+   git clone https://github.com/TwilioDevEd/twiliochat-node.git
    cd twiliochat-node
    ```
 
