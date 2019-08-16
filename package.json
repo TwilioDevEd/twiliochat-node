@@ -30,7 +30,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~3.1.0",
     "dotenv-safe": "^5.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "jade": "~1.11.0",
     "jquery": "^3.3.1",
     "kontainer-di": "^0.9.9",
