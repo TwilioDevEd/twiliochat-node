@@ -169,9 +169,17 @@ var twiliochat = (function() {
       .then(function(joinedChannel) {
         console.log('Joined channel ' + joinedChannel.friendlyName);
         updateChannelUI(_channel);
-        tc.currentChannel = _channel;
-        tc.loadMessages();
+        
         return joinedChannel;
+      })
+      .catch(function(err) {
+        if (_channel.status == 'joined') {
+          updateChannelUI(_channel);
+          return _channel;    
+        } 
+        console.error(
+          "Couldn't join channel " + _channel.friendlyName + ' because -> ' + err
+        );
       });
   }
 
@@ -273,6 +281,8 @@ var twiliochat = (function() {
     tc.currentChannelContainer.removeClass('selected-channel').addClass('unselected-channel');
     channelElement.removeClass('unselected-channel').addClass('selected-channel');
     tc.currentChannelContainer = channelElement;
+    tc.currentChannel = selectedChannel;
+    tc.loadMessages();
   }
 
   function showAddChannelInput() {
