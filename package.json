@@ -37,7 +37,7 @@
     "moment": "^2.22.2",
     "morgan": "^1.9.1",
     "serve-favicon": "~2.4.5",
-    "twilio": "^3.23.2",
+    "twilio": "^3.43.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
