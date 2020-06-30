@@ -34,7 +34,7 @@
     "jade": "~1.11.0",
     "jquery": "^3.3.1",
     "kontainer-di": "^0.9.9",
-    "moment": "^2.22.2",
+    "moment": "^2.26.0",
     "morgan": "^1.9.1",
     "serve-favicon": "~2.4.5",
     "twilio": "^3.23.2",
