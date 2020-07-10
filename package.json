@@ -44,7 +44,7 @@
     "babel-polyfill": "^6.16.0",
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.2",
-    "karma": "^2.0.5",
+    "karma": "^5.1.0",
     "karma-chai": "^0.1.0",
     "karma-jade2js-preprocessor": "^0.1.0",
     "karma-jquery-new": "^0.1.0",
