@@ -86,7 +86,7 @@ var twiliochat = (function() {
   }
 
   function fetchAccessToken(username, handler) {
-    $.post('/token', {identity: username, device: 'browser'}, null, 'json')
+    $.post('/token', {identity: username}, null, 'json')
       .done(function(response) {
         handler(response.token);
       })

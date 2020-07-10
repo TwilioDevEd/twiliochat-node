@@ -6,8 +6,7 @@ const ChatGrant = AccessToken.ChatGrant;
 function TokenGenerator(identity) {
   const appName = 'TwilioChat';
 
-  // Create a "grant" which enables a client to use Chat as a given user,
-  // on a given device
+  // Create a "grant" which enables a client to use Chat as a given user
   const chatGrant = new ChatGrant({
     serviceSid: process.env.TWILIO_CHAT_SERVICE_SID,
   });
