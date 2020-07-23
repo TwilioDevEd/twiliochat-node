@@ -229,7 +229,7 @@ var twiliochat = (function() {
     var rowDiv = $('<div>').addClass('row no-margin');
     rowDiv.loadTemplate($('#message-template'), {
       username: message.author,
-      date: dateFormatter.getTodayDate(message.timestamp),
+      date: dateFormatter.getTodayDate(message.dateCreated),
       body: message.body
     });
     if (message.author === tc.username) {
