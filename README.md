@@ -2,6 +2,9 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
+# Important Notice
+
+We intend to sunset the Programmable Chat API on July 25, 2022 to focus on the next generation of chat: the [Twilio Conversations API](https://www.twilio.com/docs/conversations). Find out about the [EOL process](https://www.twilio.com/changelog/programmable-chat-end-of-life). We have also prepared [this Migration Guide](https://www.twilio.com/docs/conversations/migrating-chat-conversations) to assist in the transition from Chat to Conversations.
 
 # Twilio Chat - Node
 
